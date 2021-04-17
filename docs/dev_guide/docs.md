@@ -12,4 +12,15 @@ Once you're done with your edits, go to the bottom of the page where you'll find
 
 # What's a Pull Request?
 
-Markdown tips
+# What's Markdown?
+
+Markdown is just regular unformatted text with some special characters that translate into formatting when the page is rendered in a browers. You'll find it everywhere, from Slack to Wikipedia. [here's a guide](https://guides.github.com/features/mastering-markdown/) to using it. 
+
+The main markdown you'll probably be using are:
+
+* Links: `[text](url)`
+* Images: `[text](link to image file)`
+* Headings: `# Heading`
+* Code: `'code here'` (use the little single quote character at the top left of your keyboard
+* Bulleted lists: `Just put a * before each line of the text. Tab in front for each level of indent you want`
+* Numbered lists: `Just put a 1 before each line of the text. Tab in front for each level of indent you want`
