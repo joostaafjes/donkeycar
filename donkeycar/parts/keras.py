@@ -193,7 +193,7 @@ class KerasCategorical(KerasPilot):
     want to enable a higher throttle range. And cars with larger steering
     throw may want more bins.
     """
-    def __init__(self, input_shape=(120, 160, 3), throttle_range=0.5):
+    def __init__(self, input_shape=(128, 160, 3), throttle_range=0.5):
         super().__init__()
         self.model = default_categorical(input_shape)
         self.throttle_range = throttle_range
