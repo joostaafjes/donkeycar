@@ -290,7 +290,7 @@ var driveHandler = new function() {
           if (pad && pad.timestamp!=0)
           {
 
-            var joystickX = applyDeadzone(pad.axes[2], 0.05);
+            var joystickX = applyDeadzone(pad.axes[0], 0.05);
 
             var joystickY = applyDeadzone(pad.axes[1], 0.15);
 
