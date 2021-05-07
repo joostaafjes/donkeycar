@@ -22,6 +22,7 @@ class PiCamera(BaseCamera):
         self.camera.framerate = framerate
         self.camera.vflip = vflip
         self.camera.hflip = hflip
+        self.camera.zoom = (0, 0.5, 1, 0.5)
         self.rawCapture = PiRGBArray(self.camera, size=resolution)
         self.stream = self.camera.capture_continuous(self.rawCapture,
             format="rgb", use_video_port=True)
