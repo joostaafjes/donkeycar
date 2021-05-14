@@ -15,6 +15,8 @@ import donkeycar as dk
 from donkeycar.utils import normalize_image, linear_bin
 from donkeycar.pipeline.types import TubRecord
 
+import datetime
+
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras.layers import Input, Dense
@@ -254,8 +256,11 @@ class KerasLinear(KerasPilot):
         self.model.compile(optimizer=self.optimizer, loss='mse')
 
     def inference(self, img_arr, other_arr):
+        start = datetime.datetime.now()
         img_arr = img_arr.reshape((1,) + img_arr.shape)
         outputs = self.model.predict(img_arr)
+        end = datetime.datetime.now()
+        print(f"took {(end - start).total_seconds() * 1000} ms")
         steering = outputs[0]
         throttle = outputs[1]
         return steering[0][0], throttle[0][0]
