@@ -57,11 +57,11 @@ class StopSignDetector(object):
     def convertImageArrayToPILImage(self, img_arr):
         #img = Image.fromarray(img_arr.astype('uint8'), 'RGB')
 
-        print(f"type img_arr: {type(img_arr)}")
-        print(f"type img: {type(img)}")
-        print(f"size before: {img.size}")
+        #print(f"type img_arr: {type(img_arr)}")
+        #print(f"type img: {type(img)}")
+        #print(f"size before: {img.size}")
         #img_resized = img.resize(self.inference_size)
-        print(f"size after: {img_resized.size}")
+        #print(f"size after: {img_resized.size}")
 
         return img_resized
 
@@ -70,7 +70,7 @@ class StopSignDetector(object):
     '''
     def detect_stop_sign (self, img_arr):
         #img = self.convertImageArrayToPILImage(img_arr)
-        print(f'stop sign detector -> img_arr.shape:{img_arr.shape}')
+        #print(f'stop sign detector -> img_arr.shape:{img_arr.shape}')
         img = cv2.cvtColor(img_arr, cv2.COLOR_BGR2RGB)
         img = cv2.resize(img, self.inference_size)
         
