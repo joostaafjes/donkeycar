@@ -15,14 +15,15 @@ class PiCamera(BaseCamera):
         from picamera.array import PiRGBArray
         from picamera import PiCamera
         
-        resolution = (image_w, image_h)
+        resolution = (image_w, image_h * 2)
         # initialize the camera and stream
         self.camera = PiCamera() #PiCamera gets resolution (height, width)
         self.camera.resolution = resolution
         self.camera.framerate = framerate
         self.camera.vflip = vflip
         self.camera.hflip = hflip
-        self.camera.zoom = (0, 0.5, 1, 0.5)
+        # get lower part of screen
+        #self.camera.zoom = (0, 0.5, 1, 0.5) # x, y, width, height
         self.rawCapture = PiRGBArray(self.camera, size=resolution)
         self.stream = self.camera.capture_continuous(self.rawCapture,
             format="rgb", use_video_port=True)
@@ -42,6 +43,7 @@ class PiCamera(BaseCamera):
         self.rawCapture.truncate(0)
         if self.image_d == 1:
             frame = rgb2gray(frame)
+        print(f'frame.shape:{frame.shape}')
         return frame
 
     def update(self):
@@ -49,11 +51,17 @@ class PiCamera(BaseCamera):
         for f in self.stream:
             # grab the frame from the stream and clear the stream in
             # preparation for the next frame
-            self.frame = f.array
+            # set bottom part vs full 
+            #self.frame = f.array, f.array
+            self.frame = f.array[128:256], f.array[0:256]
+            print(f'type(self.frame[0]): {type(self.frame[0])}')
             self.rawCapture.truncate(0)
 
             if self.image_d == 1:
-                self.frame = rgb2gray(self.frame)
+                print('this')
+                frame_gray = rgb2gray(self.frame)
+                self.frame = frame_gray, frame_gray
+            print(f'self.frame[0].shape:{self.frame[0].shape}')
 
             # if the thread indicator variable is set, stop the thread
             if not self.on:
