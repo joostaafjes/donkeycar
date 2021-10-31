@@ -43,7 +43,7 @@ class PiCamera(BaseCamera):
         self.rawCapture.truncate(0)
         if self.image_d == 1:
             frame = rgb2gray(frame)
-        print(f'frame.shape:{frame.shape}')
+        #print(f'frame.shape:{frame.shape}')
         return frame
 
     def update(self):
@@ -54,14 +54,14 @@ class PiCamera(BaseCamera):
             # set bottom part vs full 
             #self.frame = f.array, f.array
             self.frame = f.array[128:256], f.array[0:256]
-            print(f'type(self.frame[0]): {type(self.frame[0])}')
+            #print(f'type(self.frame[0]): {type(self.frame[0])}')
             self.rawCapture.truncate(0)
 
             if self.image_d == 1:
                 print('this')
                 frame_gray = rgb2gray(self.frame)
                 self.frame = frame_gray, frame_gray
-            print(f'self.frame[0].shape:{self.frame[0].shape}')
+            #print(f'self.frame[0].shape:{self.frame[0].shape}')
 
             # if the thread indicator variable is set, stop the thread
             if not self.on:
