@@ -42,7 +42,8 @@ class DonkeyGymEnv(object):
         if self.delay > 0.0:
             time.sleep(self.delay / 1000.0)
         self.action = [steering, throttle, brake]
-        return self.frame
+        # return self.frame
+        return self.frame[128:256], self.frame[0:256]
 
     def shutdown(self):
         self.running = False
